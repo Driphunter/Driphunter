@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drip Hunter — Sneakers & Streetwear deals</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#080810;--bg2:#0e0e1a;--bg3:#14141f;
+  --card:#18182a;--card2:#1e1e30;
+  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.12);
+  --accent:#ff3c5f;--accent2:#ff6b85;
+  --gold:#ffb020;--gold2:#ffd060;
+  --green:#00e09e;--green2:#00c489;
+  --blue:#4c8dff;--purple:#a78bfa;
+  --text:#eeeef8;--text2:#8888aa;--text3:#444466;
+  --r:12px;--r2:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 40% at 10% 10%,rgba(255,60,95,0.07) 0%,transparent 60%),
+             radial-gradient(ellipse 50% 50% at 90% 90%,rgba(76,141,255,0.05) 0%,transparent 60%);}
+
+.wrap{position:relative;z-index:1;max-width:1280px;margin:0 auto;padding:0 24px 100px;}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;margin:0 -24px;
+  background:rgba(8,8,16,0.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{width:36px;height:36px;border-radius:9px;background:var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue';font-size:20px;color:#fff;letter-spacing:1px;}
+.logo-name{font-family:'Bebas Neue';font-size:22px;letter-spacing:2px;}
+.logo-name span{color:var(--accent);}
+.header-right{display:flex;align-items:center;gap:10px;}
+.btn-sub{background:linear-gradient(135deg,var(--gold),#e07800);border:none;border-radius:9px;
+  padding:9px 18px;color:#000;font-family:'Outfit';font-size:13px;font-weight:700;
+  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:6px;letter-spacing:0.3px;}
+.btn-sub:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(255,176,32,0.45);}
+
+/* HERO */
+.hero{padding:44px 0 32px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,60,95,0.1);border:1px solid rgba(255,60,95,0.2);
+  border-radius:20px;padding:5px 14px;margin-bottom:18px;
+  font-size:12px;font-weight:600;color:var(--accent2);letter-spacing:1px;text-transform:uppercase;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.7)}}
+h1{font-family:'Bebas Neue';font-size:clamp(44px,7vw,80px);line-height:0.95;letter-spacing:2px;margin-bottom:16px;}
+h1 .outline{-webkit-text-stroke:1px rgba(255,255,255,0.25);color:transparent;}
+h1 .red{color:var(--accent);}
+.hero-sub{color:var(--text2);font-size:16px;font-weight:300;max-width:460px;line-height:1.65;}
+
+/* STATS */
+.stats{display:flex;gap:0;margin:28px 0 32px;background:var(--card);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;}
+.stat{flex:1;padding:18px 20px;border-right:1px solid var(--border);transition:background 0.2s;}
+.stat:last-child{border-right:none;}
+.stat:hover{background:var(--card2);}
+.stat-n{font-family:'Bebas Neue';font-size:28px;letter-spacing:1px;line-height:1;}
+.stat-n.r{color:var(--accent)}.stat-n.g{color:var(--green)}.stat-n.y{color:var(--gold)}.stat-n.b{color:var(--blue)}
+.stat-l{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;margin-top:3px;}
+
+/* CAT TABS */
+.cat-tabs{display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;}
+.cat-tab{background:var(--card);border:1px solid var(--border);border-radius:24px;
+  padding:8px 18px;color:var(--text2);font-size:13px;font-weight:500;
+  cursor:pointer;transition:all 0.15s;white-space:nowrap;display:flex;align-items:center;gap:6px;}
+.cat-tab:hover{border-color:var(--border2);color:var(--text);}
+.cat-tab.active{border-color:var(--accent);background:rgba(255,60,95,0.1);color:var(--text);}
+.cat-tab .ct-count{background:var(--accent);color:#fff;border-radius:10px;font-size:10px;font-weight:700;padding:2px 7px;}
+
+/* MAIN TABS */
+.main-tabs{display:flex;gap:4px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:5px;width:fit-content;margin-bottom:24px;}
+.main-tab{background:none;border:none;padding:10px 24px;border-radius:13px;
+  color:var(--text2);font-family:'Outfit';font-size:14px;font-weight:500;
+  cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:8px;}
+.main-tab.active{background:var(--card2);color:var(--text);}
+.tab-ct{background:var(--accent);color:#fff;border-radius:10px;font-size:10px;font-weight:700;padding:2px 7px;}
+.tab-ct.b{background:var(--blue);}
+
+/* CONTROLS */
+.controls{display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;}
+.btn-scan{background:var(--accent);border:none;border-radius:var(--r);padding:11px 24px;
+  color:#fff;font-family:'Outfit';font-size:14px;font-weight:600;cursor:pointer;
+  transition:all 0.2s;display:flex;align-items:center;gap:7px;
+  box-shadow:0 4px 20px rgba(255,60,95,0.28);}
+.btn-scan:hover{background:#ff2248;transform:translateY(-1px);}
+.btn-scan:disabled{opacity:0.4;cursor:not-allowed;transform:none;}
+.sort-pills{display:flex;background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.sort-pill{background:none;border:none;padding:10px 15px;color:var(--text2);
+  font-family:'Outfit';font-size:13px;cursor:pointer;transition:all 0.15s;}
+.sort-pill.active{background:var(--card2);color:var(--text);}
+
+/* ALERTS */
+.alert{display:none;align-items:center;gap:10px;border-radius:var(--r);padding:11px 16px;
+  margin-bottom:18px;font-size:14px;font-weight:500;animation:slideDown 0.3s ease;}
+.alert.show{display:flex;}
+.alert-green{background:rgba(0,224,158,0.08);border:1px solid rgba(0,224,158,0.2);color:var(--green);}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+/* LOADING */
+.loading{display:none;flex-direction:column;align-items:center;padding:50px 20px;gap:14px;}
+.loading.show{display:flex;}
+.spinner{width:36px;height:36px;border:3px solid var(--border2);border-top-color:var(--accent);
+  border-radius:50%;animation:spin 0.75s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-msg{color:var(--text2);font-size:14px;}
+.load-steps{display:flex;flex-direction:column;gap:5px;margin-top:6px;min-width:200px;}
+.load-step{font-size:12px;color:var(--text3);padding:5px 10px;border-radius:6px;transition:all 0.3s;}
+.load-step.active{background:rgba(255,60,95,0.1);color:var(--accent2);}
+.load-step.done{color:var(--green);}
+
+/* EMPTY */
+.empty{display:none;text-align:center;padding:70px 20px;}
+.empty.show{display:block;}
+.empty-g{font-family:'Bebas Neue';font-size:72px;color:var(--border2);margin-bottom:10px;}
+.empty-t{font-family:'Bebas Neue';font-size:26px;letter-spacing:1px;margin-bottom:8px;}
+.empty-s{color:var(--text2);font-size:14px;}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
+
+/* LOAD MORE */
+.load-more-wrap{display:none;justify-content:center;padding:28px 0;}
+.load-more-wrap.show{display:flex;}
+.btn-more{background:var(--card);border:1px solid var(--border2);border-radius:var(--r);
+  padding:12px 28px;color:var(--text2);font-family:'Outfit';font-size:14px;font-weight:500;
+  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:8px;}
+.btn-more:hover{background:var(--card2);color:var(--text);}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r2);
+  overflow:hidden;cursor:pointer;transition:all 0.2s;animation:fadeUp 0.35s ease both;position:relative;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 10px 36px rgba(0,0,0,0.45);}
+.card.sold{pointer-events:none;opacity:0.7;}
+.card.new-card{border-color:rgba(0,224,158,0.22);}
+.card.fire-card{border-color:rgba(255,60,95,0.22);}
+
+/* SOLD OVERLAY */
+.sold-overlay{display:none;position:absolute;inset:0;z-index:20;
+  background:rgba(8,8,16,0.82);backdrop-filter:blur(4px);
+  flex-direction:column;align-items:center;justify-content:center;gap:8px;border-radius:var(--r2);}
+.card.sold .sold-overlay{display:flex;}
+.sold-icon{font-size:36px;}
+.sold-msg{font-family:'Bebas Neue';font-size:22px;letter-spacing:1px;color:var(--accent2);}
+.sold-sub{font-size:12px;color:var(--text3);}
+
+/* BLUR (freemium) */
+.card.blurred{pointer-events:none;}
+.card.blurred .card-img-wrap,.card.blurred .card-body,.card.blurred .card-foot{filter:blur(7px);}
+.lock-over{display:none;position:absolute;inset:0;z-index:10;
+  background:rgba(8,8,16,0.65);backdrop-filter:blur(1px);
+  flex-direction:column;align-items:center;justify-content:center;gap:10px;border-radius:var(--r2);}
+.card.blurred .lock-over{display:flex;}
+.lock-btn{background:linear-gradient(135deg,var(--gold),#e07800);border:none;border-radius:8px;
+  padding:9px 20px;color:#000;font-weight:700;font-size:13px;cursor:pointer;pointer-events:all;transition:all 0.2s;}
+.lock-btn:hover{transform:scale(1.04);}
+
+/* SCORE TAG */
+.score-tag{position:absolute;top:10px;left:10px;z-index:5;
+  font-family:'Bebas Neue';font-size:14px;letter-spacing:0.5px;padding:3px 10px;border-radius:7px;}
+.st-hi{background:rgba(0,224,158,0.14);color:var(--green);border:1px solid rgba(0,224,158,0.22);}
+.st-md{background:rgba(255,176,32,0.12);color:var(--gold2);border:1px solid rgba(255,176,32,0.18);}
+.st-lo{background:rgba(255,60,95,0.1);color:var(--accent2);border:1px solid rgba(255,60,95,0.14);}
+
+/* BADGE */
+.card-badge{position:absolute;top:10px;right:10px;z-index:5;
+  font-size:10px;font-weight:700;letter-spacing:0.4px;padding:3px 9px;border-radius:6px;}
+.b-new{background:var(--green);color:#000;}
+.b-fire{background:var(--accent);color:#fff;}
+
+/* IMG */
+.card-img-wrap{width:100%;height:180px;overflow:hidden;background:var(--bg3);}
+.card-img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.card:hover .card-img{transform:scale(1.05);}
+.card-img-ph{width:100%;height:180px;display:flex;align-items:center;justify-content:center;background:var(--bg3);font-size:44px;color:var(--text3);}
+
+/* BODY */
+.card-body{padding:13px 15px;}
+.card-title{font-size:14px;font-weight:500;line-height:1.35;margin-bottom:7px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}
+.chip{border-radius:5px;padding:2px 8px;font-size:11px;font-weight:500;}
+.c-brand{background:rgba(255,60,95,0.09);color:var(--accent2);border:1px solid rgba(255,60,95,0.14);}
+.c-size {background:rgba(76,141,255,0.09);color:#7aabff;border:1px solid rgba(76,141,255,0.14);}
+.c-etat {background:var(--bg3);color:var(--text2);border:1px solid var(--border);}
+
+/* LIQUIDITÉ */
+.liq-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.liq-lbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;}
+.liq-right{display:flex;align-items:center;gap:6px;}
+.liq-dots{display:flex;gap:2px;}
+.ld{width:7px;height:7px;border-radius:50%;background:var(--border2);}
+.ld.green{background:var(--green)}.ld.lime{background:#a3e635}.ld.yellow{background:var(--gold2)}.ld.orange{background:#fb923c}.ld.red{background:var(--accent)}
+.liq-txt{font-size:11px;font-weight:600;}
+.liq-txt.green{color:var(--green)}.liq-txt.lime{color:#a3e635}.liq-txt.yellow{color:var(--gold2)}.liq-txt.orange{color:#fb923c}.liq-txt.red{color:var(--accent)}
+
+/* PRIX */
+.card-prices{display:flex;justify-content:space-between;align-items:flex-end;
+  padding-top:10px;border-top:1px solid var(--border);}
+.buy-side .lbl,.profit-side .lbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.6px;}
+.buy-side .val{font-family:'Bebas Neue';font-size:22px;letter-spacing:0.5px;}
+.profit-side{text-align:right;}
+.profit-side .val{font-family:'Bebas Neue';font-size:20px;letter-spacing:0.5px;}
+.profit-side .val.pos{color:var(--green);}
+.profit-side .val.neg{color:var(--accent);}
+.profit-side .rev-range{font-size:11px;color:var(--text3);margin-top:2px;}
+.profit-side .rev-range span{color:var(--text2);}
+
+/* FOOT */
+.card-foot{padding:8px 15px;background:rgba(0,0,0,0.2);
+  display:flex;justify-content:space-between;border-top:1px solid var(--border);}
+.foot-l,.foot-r{font-size:11px;color:var(--text3);}
+.foot-r{color:var(--accent2);font-weight:500;}
+
+/* PREMIUM LOCK (onglet now) */
+.prem-lock{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:70px 20px;text-align:center;gap:14px;}
+.pl-ico{font-size:52px;}
+.pl-t{font-family:'Bebas Neue';font-size:34px;letter-spacing:1px;}
+.pl-s{color:var(--text2);font-size:15px;max-width:380px;line-height:1.6;}
+.pl-btn{background:linear-gradient(135deg,var(--gold),#e07800);border:none;border-radius:var(--r);
+  padding:13px 30px;color:#000;font-family:'Outfit';font-size:15px;font-weight:700;
+  cursor:pointer;transition:all 0.2s;margin-top:6px;}
+.pl-btn:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(255,176,32,0.4);}
+
+/* MODAL */
+.modal-bg{display:none;position:fixed;inset:0;z-index:1000;
+  background:rgba(0,0,0,0.82);backdrop-filter:blur(12px);
+  align-items:center;justify-content:center;padding:20px;}
+.modal-bg.show{display:flex;}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:24px;
+  padding:36px;max-width:500px;width:100%;animation:popIn 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  max-height:90vh;overflow-y:auto;}
+@keyframes popIn{from{opacity:0;transform:scale(0.88)}to{opacity:1;transform:scale(1)}}
+.modal-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;}
+.modal-close{background:var(--card);border:none;border-radius:8px;width:32px;height:32px;
+  cursor:pointer;color:var(--text2);font-size:17px;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{background:var(--card2);}
+.modal-title{font-family:'Bebas Neue';font-size:32px;letter-spacing:1.5px;}
+.modal-title .y{color:var(--gold2);}
+.modal-eyebrow{font-size:12px;color:var(--accent2);font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;}
+.trial-banner{background:rgba(0,224,158,0.08);border:1px solid rgba(0,224,158,0.2);
+  border-radius:var(--r);padding:12px 16px;margin-bottom:20px;
+  font-size:14px;color:var(--green);font-weight:500;display:flex;align-items:center;gap:8px;}
+.perks{display:flex;flex-direction:column;gap:9px;margin-bottom:24px;}
+.perk{display:flex;align-items:center;gap:10px;font-size:14px;}
+.perk-i{width:30px;height:30px;border-radius:8px;background:rgba(255,60,95,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+
+/* PLANS */
+.plans-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.plan{border:1.5px solid var(--border2);border-radius:14px;padding:16px 10px;
+  cursor:pointer;transition:all 0.15s;text-align:center;position:relative;}
+.plan:hover,.plan.sel{border-color:var(--accent);background:rgba(255,60,95,0.06);}
+.plan-pop{position:absolute;top:-10px;left:50%;transform:translateX(-50%);
+  background:var(--accent);color:#fff;font-size:10px;font-weight:700;
+  padding:2px 10px;border-radius:8px;white-space:nowrap;letter-spacing:0.3px;}
+.plan-price{font-family:'Bebas Neue';font-size:24px;letter-spacing:1px;color:var(--gold2);margin-bottom:2px;}
+.plan-period{font-size:11px;color:var(--text2);}
+.plan-save{font-size:10px;color:var(--green);margin-top:3px;font-weight:500;}
+.pay-btn{width:100%;background:linear-gradient(135deg,var(--accent),#c0002a);
+  border:none;border-radius:var(--r);padding:14px;color:#fff;
+  font-family:'Outfit';font-size:15px;font-weight:600;cursor:pointer;
+  box-shadow:0 4px 22px rgba(255,60,95,0.33);transition:all 0.2s;letter-spacing:0.3px;}
+.pay-btn:hover{box-shadow:0 6px 30px rgba(255,60,95,0.52);}
+.stripe-note{text-align:center;color:var(--text3);font-size:11px;margin-top:9px;}
+
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--card2);border-radius:3px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="logo" href="#"><div class="logo-mark">DH</div><div class="logo-name">DRIP<span>HUNTER</span></div></a>
+    <div class="header-right">
+      <button class="btn-sub" onclick="openModal()">👑 S'abonner</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow"><div class="dot"></div> Sneakers · Streetwear · Luxe · Vintage</div>
+    <h1>TROUVE<br><span class="outline">LES <span class="red">DEALS</span></span><br>AVANT TOUS</h1>
+    <p class="hero-sub">Scanner automatique des meilleures opportunités de revente. Score de rentabilité + liquidité sur chaque article.</p>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-n r" id="sDeals">—</div><div class="stat-l">Deals trouvés</div></div>
+    <div class="stat"><div class="stat-n g" id="sBest">—</div><div class="stat-l">Meilleure marge</div></div>
+    <div class="stat"><div class="stat-n y" id="sAvg">—</div><div class="stat-l">Score moyen</div></div>
+    <div class="stat"><div class="stat-n b" id="sTime">—</div><div class="stat-l">Dernier scan</div></div>
+  </div>
+
+  <!-- MAIN TABS -->
+  <div class="main-tabs">
+    <button class="main-tab active" onclick="switchMainTab('top',this)">🔥 Top du jour <span class="tab-ct" id="ct-top">0</span></button>
+    <button class="main-tab" onclick="switchMainTab('now',this)">⚡ En ce moment <span class="tab-ct b" id="ct-now">0</span></button>
+  </div>
+
+  <!-- TAB TOP -->
+  <div id="tab-top">
+    <!-- CAT TABS -->
+    <div class="cat-tabs">
+      <div class="cat-tab active" data-cat="sneakers" onclick="setCat('sneakers',this,'top')">👟 Sneakers <span class="ct-count" id="cnt-s">0</span></div>
+      <div class="cat-tab" data-cat="streetwear" onclick="setCat('streetwear',this,'top')">🧥 Streetwear <span class="ct-count" id="cnt-sw">0</span></div>
+      <div class="cat-tab" data-cat="luxe" onclick="setCat('luxe',this,'top')">💎 Luxe <span class="ct-count" id="cnt-l">0</span></div>
+      <div class="cat-tab" data-cat="vintage" onclick="setCat('vintage',this,'top')">🕰️ Vintage <span class="ct-count" id="cnt-v">0</span></div>
+    </div>
+    <div class="controls">
+      <button class="btn-scan" id="btnTop" onclick="scanTop()"><span id="icoTop">🔍</span> Scanner</button>
+      <div class="sort-pills">
+        <button class="sort-pill active" onclick="setSort('score',this)">📊 Score</button>
+        <button class="sort-pill" onclick="setSort('marge',this)">💰 Marge</button>
+        <button class="sort-pill" onclick="setSort('recent',this)">🕐 Récent</button>
+      </div>
+    </div>
+    <div class="alert alert-green" id="alertTop"><div class="dot"></div><span id="alertTopTxt"></span></div>
+    <div class="loading" id="loadTop">
+      <div class="spinner"></div><div class="load-msg" id="loadTopMsg">Scan en cours…</div>
+      <div class="load-steps" id="stepsTop"></div>
+    </div>
+    <div class="empty show" id="emptyTop">
+      <div class="empty-g">DH</div>
+      <div class="empty-t">Prêt à chasser</div>
+      <div class="empty-s">Lance le scan pour voir les meilleures affaires.</div>
+    </div>
+    <div class="grid" id="gridTop"></div>
+    <div class="load-more-wrap" id="moreTopWrap">
+      <button class="btn-more" onclick="loadMoreTop()">↓ Charger plus de deals</button>
+    </div>
+  </div>
+
+  <!-- TAB NOW -->
+  <div id="tab-now" style="display:none">
+    <div id="nowLock" class="prem-lock">
+      <div class="pl-ico">⚡</div>
+      <div class="pl-t">ACCÈS PREMIUM</div>
+      <p class="pl-s">Vois les annonces publiées dans la dernière heure avant tout le monde. Les bonnes affaires partent en moins de 10 minutes.</p>
+      <button class="pl-btn" onclick="openModal()">👑 Débloquer — 3 jours gratuits</button>
+    </div>
+    <div id="nowContent" style="display:none">
+      <div class="cat-tabs" id="catTabsNow">
+        <div class="cat-tab active" data-cat="sneakers" onclick="setCat('sneakers',this,'now')">👟 Sneakers</div>
+        <div class="cat-tab" data-cat="streetwear" onclick="setCat('streetwear',this,'now')">🧥 Streetwear</div>
+        <div class="cat-tab" data-cat="luxe" onclick="setCat('luxe',this,'now')">💎 Luxe</div>
+        <div class="cat-tab" data-cat="vintage" onclick="setCat('vintage',this,'now')">🕰️ Vintage</div>
+      </div>
+      <div class="controls">
+        <button class="btn-scan" id="btnNow" onclick="scanNow()"><span id="icoNow">⚡</span> Refresh</button>
+      </div>
+      <div class="alert alert-green" id="alertNow"><div class="dot"></div><span id="alertNowTxt"></span></div>
+      <div class="loading" id="loadNow"><div class="spinner"></div><div class="load-msg">Scan dernière heure…</div></div>
+      <div class="empty show" id="emptyNow">
+        <div class="empty-g">⚡</div><div class="empty-t">Aucun deal récent</div>
+        <div class="empty-s">Clique sur Refresh pour voir les annonces de la dernière heure.</div>
+      </div>
+      <div class="grid" id="gridNow"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeBg(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <div class="modal-eyebrow">🚀 Accès illimité</div>
+        <div class="modal-title">REJOINS <span class="y">DRIP HUNTER</span></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="trial-banner">🎁 3 jours d'essai gratuit — sans engagement</div>
+    <div class="perks">
+      <div class="perk"><div class="perk-i">⚡</div> Onglet "En ce moment" — annonces < 1h</div>
+      <div class="perk"><div class="perk-i">💎</div> Accès Luxe & Vintage illimité</div>
+      <div class="perk"><div class="perk-i">📊</div> Résultats illimités (vs 5 en gratuit)</div>
+      <div class="perk"><div class="perk-i">🔔</div> Alertes sur tes marques favorites</div>
+      <div class="perk"><div class="perk-i">📤</div> Export CSV de tous tes deals</div>
+    </div>
+    <div class="plans-grid">
+      <div class="plan" id="plan-week" onclick="selectPlan('week')">
+        <div class="plan-price">2,99€</div>
+        <div class="plan-period">/ semaine</div>
+        <div class="plan-save">Après essai gratuit</div>
+      </div>
+      <div class="plan sel" id="plan-month" onclick="selectPlan('month')">
+        <div class="plan-pop">POPULAIRE</div>
+        <div class="plan-price">8,99€</div>
+        <div class="plan-period">/ mois</div>
+        <div class="plan-save">Économise 52%</div>
+      </div>
+      <div class="plan" id="plan-year" onclick="selectPlan('year')">
+        <div class="plan-price">39,99€</div>
+        <div class="plan-period">/ an</div>
+        <div class="plan-save">Économise 63%</div>
+      </div>
+    </div>
+    <button class="pay-btn" onclick="goCheckout()">🎁 Commencer l'essai gratuit</button>
+    <div class="stripe-note">🔒 Stripe · Résiliable à tout moment · 3 jours gratuits</div>
+  </div>
+</div>
+
+<script>
+// ── STRIPE ──
+const STRIPE = {
+  week:  'https://buy.stripe.com/REMPLACE_SEMAINE',
+  month: 'https://buy.stripe.com/REMPLACE_MOIS',
+  year:  'https://buy.stripe.com/REMPLACE_AN',
+};
+
+// ── STATE ──
+let dealsTop = {sneakers:[],streetwear:[],luxe:[],vintage:[]};
+let dealsNow = {sneakers:[],streetwear:[],luxe:[],vintage:[]};
+let currentCatTop = 'sneakers', currentCatNow = 'sneakers';
+let currentSort = 'score';
+let selectedPlan = 'month';
+let isPremium = false;
+let knownTop = {sneakers:new Set(),streetwear:new Set(),luxe:new Set(),vintage:new Set()};
+let knownNow = {sneakers:new Set(),streetwear:new Set(),luxe:new Set(),vintage:new Set()};
+const FREE_LIMIT = 5, PAGE_SIZE = 12;
+let topPage = 0;
+
+const CAT_ICONS = {sneakers:'👟',streetwear:'🧥',luxe:'💎',vintage:'🕰️'};
+
+// ── MAIN TABS ──
+function switchMainTab(name, el) {
+  document.querySelectorAll('.main-tab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-top').style.display = name === 'top' ? '' : 'none';
+  document.getElementById('tab-now').style.display = name === 'now' ? '' : 'none';
+}
+
+// ── CAT TABS ──
+function setCat(cat, el, tab) {
+  const parent = el.closest('.cat-tabs');
+  parent.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  if (tab === 'top') { currentCatTop = cat; topPage = 0; renderTop(); }
+  else               { currentCatNow = cat; renderNow(); }
+}
+
+// ── SORT ──
+function setSort(s, el) {
+  currentSort = s;
+  document.querySelectorAll('.sort-pill').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  topPage = 0; renderTop();
+}
+
+// ── LIQUIDITY HTML ──
+function liqHtml(liq) {
+  const dots = [1,2,3,4,5].map(i =>
+    `<div class="ld${i<=liq.level?' '+liq.color:''}"></div>`).join('');
+  return `<div class="liq-row">
+    <span class="liq-lbl">Liquidité</span>
+    <div class="liq-right">
+      <div class="liq-dots">${dots}</div>
+      <span class="liq-txt ${liq.color}">${liq.label}</span>
+    </div>
+  </div>`;
+}
+
+// ── CARD HTML ──
+function cardHtml(d, idx, isNew, blurred) {
+  const sc = d.score>=70?'st-hi':d.score>=50?'st-md':'st-lo';
+  const age = d.age_heures<1?'< 1h':d.age_heures<24?Math.round(d.age_heures)+'h':Math.round(d.age_heures/24)+'j';
+  const badge = isNew ? '<div class="card-badge b-new">NEW</div>'
+    : d.score>=75 ? '<div class="card-badge b-fire">🔥 TOP</div>' : '';
+  const cardClass = `card${d.is_sold?' sold':''}${isNew&&!d.is_sold?' new-card':''}${d.score>=75&&!d.is_sold?' fire-card':''}${blurred?' blurred':''}`;
+  const delay = `animation-delay:${idx*0.04}s`;
+
+  return `<div class="${cardClass}" style="${delay}" data-id="${d.id}"
+    onclick="${blurred?'openModal()':d.is_sold?'':'window.open(\''+d.url+'\',\'_blank\')'}">
+    ${d.is_sold ? `<div class="sold-overlay">
+      <div class="sold-icon">😔</div>
+      <div class="sold-msg">${d.sold_msg||'Vendu'}</div>
+      <div class="sold-sub">Cette annonce n'est plus disponible</div>
+    </div>` : ''}
+    ${blurred ? `<div class="lock-over">
+      <div style="font-size:28px">🔒</div>
+      <div style="font-size:12px;color:var(--text2);text-align:center;padding:0 16px">Débloque Premium</div>
+      <button class="lock-btn" onclick="openModal()">👑 Voir le deal</button>
+    </div>` : ''}
+    <div class="score-tag ${sc}">${d.score}/100</div>
+    ${badge}
+    <div class="card-img-wrap">
+      ${d.photo
+        ? `<img class="card-img" src="${d.photo}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'card-img-ph\\'>👟</div>'">`
+        : '<div class="card-img-ph">'+CAT_ICONS[d.categorie||'sneakers']+'</div>'}
+    </div>
+    <div class="card-body">
+      <div class="card-title">${d.titre}</div>
+      <div class="chips">
+        ${d.marque?`<span class="chip c-brand">${d.marque}</span>`:''}
+        ${d.taille?`<span class="chip c-size">${d.taille}</span>`:''}
+        <span class="chip c-etat">${d.etat}</span>
+      </div>
+      ${liqHtml(d.liquidite)}
+      <div class="card-prices">
+        <div class="buy-side">
+          <div class="lbl">Achat</div>
+          <div class="val">${d.prix_achat.toFixed(2)}€</div>
+        </div>
+        <div class="profit-side">
+          <div class="lbl">Marge nette</div>
+          <div class="val ${d.marge_nette>0?'pos':'neg'}">${d.marge_nette>0?'+':''}${d.marge_nette.toFixed(2)}€</div>
+          <div class="rev-range">Revente <span>${d.rev_min}€ — ${d.rev_max}€</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-foot">
+      <span class="foot-l">♥ ${d.favoris} · Il y a ${age}</span>
+      <span class="foot-r">${d.is_sold?'Indisponible':'Voir →'}</span>
+    </div>
+  </div>`;
+}
+
+// ── RENDER TOP ──
+function renderTop(append=false) {
+  let data = [...(dealsTop[currentCatTop]||[])];
+  if (currentSort==='score') data.sort((a,b)=>b.score-a.score);
+  else if (currentSort==='marge') data.sort((a,b)=>b.marge_nette-a.marge_nette);
+  else data.sort((a,b)=>b.created_at_ts-a.created_at_ts);
+
+  const grid = document.getElementById('gridTop');
+  const empty = document.getElementById('emptyTop');
+  if (!data.length) { grid.innerHTML=''; empty.classList.add('show'); hideMoreTop(); return; }
+  empty.classList.remove('show');
+
+  const start = append ? topPage*PAGE_SIZE : 0;
+  const slice = data.slice(start, start+PAGE_SIZE);
+  const html  = slice.map((d,i) => cardHtml(d, start+i, i<3&&currentSort==='recent', !isPremium&&(start+i)>=FREE_LIMIT)).join('');
+
+  if (append) grid.innerHTML += html;
+  else grid.innerHTML = html;
+
+  const hasMore = data.length > (topPage+1)*PAGE_SIZE;
+  hasMore ? document.getElementById('moreTopWrap').classList.add('show')
+          : hideMoreTop();
+
+  document.getElementById('ct-top').textContent = data.length;
+  updateCatCounts();
+
+  // Vérifier les annonces vendues en arrière-plan
+  const ids = slice.map(d=>d.id);
+  checkSoldBatch(ids, 'top', currentCatTop);
+}
+
+function loadMoreTop() {
+  topPage++;
+  renderTop(true);
+}
+function hideMoreTop() { document.getElementById('moreTopWrap').classList.remove('show'); }
+
+// ── RENDER NOW ──
+function renderNow() {
+  let data = [...(dealsNow[currentCatNow]||[])];
+  data.sort((a,b)=>b.created_at_ts-a.created_at_ts);
+  const grid = document.getElementById('gridNow');
+  const empty = document.getElementById('emptyNow');
+  if (!data.length) { grid.innerHTML=''; empty.classList.add('show'); return; }
+  empty.classList.remove('show');
+  grid.innerHTML = data.map((d,i)=>cardHtml(d,i,true,false)).join('');
+  document.getElementById('ct-now').textContent = data.length;
+  const ids = data.map(d=>d.id);
+  checkSoldBatch(ids, 'now', currentCatNow);
+}
+
+// ── CHECK SOLD ──
+async function checkSoldBatch(ids, tab, cat) {
+  if (!ids.length) return;
+  try {
+    const r = await fetch('/api/check_sold_batch', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ids: ids.slice(0,20)})
+    });
+    const results = await r.json();
+    const store = tab==='top' ? dealsTop : dealsNow;
+    let changed = false;
+    (store[cat]||[]).forEach(d => {
+      const res = results[String(d.id)];
+      if (res && res.is_sold && !d.is_sold) {
+        d.is_sold = true; d.sold_msg = res.msg; changed = true;
+      }
+    });
+    if (changed) {
+      if (tab==='top') renderTop();
+      else renderNow();
+    }
+  } catch(e) {}
+}
+
+// ── UPDATE CAT COUNTS ──
+function updateCatCounts() {
+  const ids = {sneakers:'cnt-s',streetwear:'cnt-sw',luxe:'cnt-l',vintage:'cnt-v'};
+  Object.entries(ids).forEach(([cat,id]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = (dealsTop[cat]||[]).length;
+  });
+}
+
+// ── SCAN TOP ──
+async function scanTop() {
+  const btn = document.getElementById('btnTop');
+  document.getElementById('icoTop').textContent='⏳';
+  btn.disabled=true;
+  document.getElementById('loadTop').classList.add('show');
+  document.getElementById('emptyTop').classList.remove('show');
+  document.getElementById('alertTop').classList.remove('show');
+  topPage=0;
+
+  const steps=['Connexion Vinted…','Scan sneakers…','Scan streetwear…','Scan luxe…','Scan vintage…','Calcul marges…','Tri deals…'];
+  const stepsEl=document.getElementById('stepsTop');
+  stepsEl.innerHTML=steps.map((s,i)=>`<div class="load-step" id="ls${i}">${s}</div>`).join('');
+  let si=0;
+  const iv=setInterval(()=>{
+    if(si>0)document.getElementById('ls'+(si-1))?.classList.replace('active','done');
+    if(si<steps.length)document.getElementById('ls'+si)?.classList.add('active');
+    si++;
+  },1800);
+
+  // Scanner toutes les catégories en parallèle
+  const cats=['sneakers','streetwear','luxe','vintage'];
+  const results = await Promise.allSettled(cats.map(cat =>
+    fetch(`/api/scan/top?cat=${cat}&sort=${currentSort}`).then(r=>r.json())
+  ));
+
+  clearInterval(iv);
+  results.forEach((res,i)=>{
+    if(res.status==='fulfilled') {
+      const cat=cats[i], items=res.value.items||[];
+      const first=knownTop[cat].size===0;
+      if(!first){
+        const newOnes=items.filter(d=>!knownTop[cat].has(d.id));
+        if(newOnes.length&&cat===currentCatTop){
+          document.getElementById('alertTopTxt').textContent=`${newOnes.length} nouveaux deals ajoutés !`;
+          document.getElementById('alertTop').classList.add('show');
+          setTimeout(()=>document.getElementById('alertTop').classList.remove('show'),5000);
+        }
+      }
+      knownTop[cat]=new Set(items.map(d=>d.id));
+      dealsTop[cat]=items;
+    }
+  });
+
+  updateStats();
+  renderTop();
+  document.getElementById('loadTop').classList.remove('show');
+  btn.disabled=false;
+  document.getElementById('icoTop').textContent='🔍';
+  document.getElementById('sTime').textContent=new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+}
+
+// ── SCAN NOW ──
+async function scanNow() {
+  const btn=document.getElementById('btnNow');
+  document.getElementById('icoNow').textContent='⏳';
+  btn.disabled=true;
+  document.getElementById('loadNow').classList.add('show');
+  document.getElementById('emptyNow').classList.remove('show');
+
+  const cats=['sneakers','streetwear','luxe','vintage'];
+  const results=await Promise.allSettled(cats.map(cat=>
+    fetch(`/api/scan/recent?cat=${cat}`).then(r=>r.json())
+  ));
+
+  results.forEach((res,i)=>{
+    if(res.status==='fulfilled'){
+      const cat=cats[i], items=res.value.items||[];
+      const first=knownNow[cat].size===0;
+      if(!first){
+        const newOnes=items.filter(d=>!knownNow[cat].has(d.id));
+        if(newOnes.length&&cat===currentCatNow){
+          document.getElementById('alertNowTxt').textContent=`${newOnes.length} nouvelles annonces !`;
+          document.getElementById('alertNow').classList.add('show');
+          setTimeout(()=>document.getElementById('alertNow').classList.remove('show'),5000);
+        }
+      }
+      knownNow[cat]=new Set(items.map(d=>d.id));
+      dealsNow[cat]=items;
+    }
+  });
+
+  renderNow();
+  document.getElementById('loadNow').classList.remove('show');
+  btn.disabled=false;
+  document.getElementById('icoNow').textContent='⚡';
+}
+
+// ── STATS ──
+function updateStats() {
+  const all=Object.values(dealsTop).flat();
+  document.getElementById('sDeals').textContent=all.length;
+  if(all.length){
+    const best=Math.max(...all.map(d=>d.marge_nette));
+    document.getElementById('sBest').textContent='+'+best.toFixed(0)+'€';
+    const avg=all.reduce((a,b)=>a+b.score,0)/all.length;
+    document.getElementById('sAvg').textContent=avg.toFixed(0)+'/100';
+  }
+}
+
+// ── MODAL ──
+function openModal(){document.getElementById('modalBg').classList.add('show');}
+function closeModal(){document.getElementById('modalBg').classList.remove('show');}
+function closeBg(e){if(e.target===document.getElementById('modalBg'))closeModal();}
+function selectPlan(p){
+  selectedPlan=p;
+  document.querySelectorAll('.plan').forEach(el=>el.classList.remove('sel'));
+  document.getElementById('plan-'+p).classList.add('sel');
+}
+function goCheckout(){
+  const url=STRIPE[selectedPlan];
+  if(url.includes('REMPLACE')){alert('Configure tes liens Stripe dans const STRIPE = {...}');return;}
+  window.open(url,'_blank');
+}
+function unlockPremium(){
+  isPremium=true;
+  document.getElementById('nowLock').style.display='none';
+  document.getElementById('nowContent').style.display='';
+  renderTop();
+}
+
+// Init
+document.getElementById('emptyTop').classList.add('show');
+</script>
+</body>
+</html>
